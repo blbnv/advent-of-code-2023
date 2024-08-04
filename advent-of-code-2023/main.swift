@@ -9,10 +9,13 @@ import Foundation
 
 let inputElements = readLinesFromFile()!
 
-// Day1
-print(day1part1().solution(inputElements))
-print(day1part2().solution(inputElements))
+// Day 1
+// print(day1part1().solution(inputElements))
+// print(day1part2().solution(inputElements))
 
+// Day 2
+// print(day2part1().solution(inputElements))
+// print(day2part2().solution(inputElements))
 
 // MARK: - Reading input
 
