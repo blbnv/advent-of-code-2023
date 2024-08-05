@@ -18,7 +18,8 @@ let inputElements = readLinesFromFile()!
 // print(day2part2().solution(inputElements))
 
 // Day 3
-print(day3part1().solution(inputElements))
+//print(day3part1().solution(inputElements))
+print(day3part2().solution(inputElements))
 
 // MARK: - Reading input
 

@@ -1,5 +1,5 @@
 //
-//  day3_part1.swift
+//  day3_part2.swift
 //  advent-of-code-2023
 //
 //  Created by Oleksandr Balabanov on 05/08/2024.
@@ -7,13 +7,14 @@
 
 import Foundation
 
-final class day3part1 {
+final class day3part2 {
     func solution(_ elements: [String]) -> Int {
         let dict = memoizeElements(elements)
         return saveNumbers(elements, dictionary: dict)
     }
     
-    func sumIfNeeded(_ n: Int, database: [Int: Int], number: Int, indexes: [Int]) -> Int {
+    // Returns tuple 0: gear index, 1: number
+    func sumIfNeeded(_ n: Int, database: [Int: Int], number: Int, indexes: [Int]) -> (Int, Int)? {
         let leftIndex = indexes.first!
         let numLength = indexes.count
     
@@ -31,18 +32,18 @@ final class day3part1 {
             for col in cols {
                 let indexToCheck = row * n + col
                 if database[indexToCheck] == 2 {
-                    return number
+                    return (indexToCheck, number)
                 }
             }
         }
 
-        return 0
+        return nil
     }
     
     // Save numbers with their digits positions
     private func saveNumbers(_ elements: [String], dictionary: [Int: Int]) -> Int {
         let length = elements.first!.count
-        var result = 0
+        var gearsCache = [Int: [Int]]()
         
         for (i, row) in elements.enumerated() {
             var currentNumber = 0
@@ -51,7 +52,10 @@ final class day3part1 {
             for (k, char) in row.enumerated() {
                 // Flush
                 if !char.isNumber, currentNumber != 0 {
-                    result += sumIfNeeded(length, database: dictionary, number: currentNumber, indexes: currentIndexes)
+                    if let gearResult = sumIfNeeded(length, database: dictionary, number: currentNumber, indexes: currentIndexes) {
+                        let previous = gearsCache[gearResult.0] ?? [Int]()
+                        gearsCache[gearResult.0] = previous + [gearResult.1]
+                    }
                     
                     currentNumber = 0
                     currentIndexes = []
@@ -67,17 +71,26 @@ final class day3part1 {
             }
             
             if currentNumber != 0 {
-                result += sumIfNeeded(length, database: dictionary, number: currentNumber, indexes: currentIndexes)
+                if let gearResult = sumIfNeeded(length, database: dictionary, number: currentNumber, indexes: currentIndexes) {
+                    let previous = gearsCache[gearResult.0] ?? [Int]()
+                    gearsCache[gearResult.0] = previous + [gearResult.1]
+                }
                 currentNumber = 0
                 currentIndexes = []
             }
         }
         
+        var result = 0
+        
+        for value in gearsCache.values where value.count == 2 {
+            result += value.first! * value.last!
+        }
+        
         return result
     }
     
-    /// Returns [Int: Int], where key is an index in the collection, and value is 0, 1, or 2.
-    /// Where: 0 - void, 1 - number, 2 - symbol
+    /// Returns [Int: Int], where key is an index in the collection, and value is 0, 1, 2, 3
+    /// Where: 0 - void, 1 - number, 2 - gear, 3 - anything else
     private func memoizeElements(_ elements: [String]) -> [Int: Int] {
         var dict = [Int: Int]()
         let length = elements.first!.count
@@ -95,7 +108,8 @@ final class day3part1 {
     func transformCharToSpecialCode(_ char: Character) -> Int {
         if char == "." { return 0 }
         if char.isNumber { return 1}
-        return 2
+        if char == "*" { return 2 }
+        return 3
     }
 
     private func calculateMatrixSize(_ matrix: [String]) -> (Int, Int) {
