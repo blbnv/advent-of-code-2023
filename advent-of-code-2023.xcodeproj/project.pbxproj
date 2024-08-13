@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0760D72C65256A00461EBA /* day4part2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0760D62C65256A00461EBA /* day4part2.swift */; };
 		1BA203852C5F705D00C23FD8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA203842C5F705D00C23FD8 /* main.swift */; };
 		1BA2038D2C5F708600C23FD8 /* day1_part1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2038C2C5F708600C23FD8 /* day1_part1.swift */; };
 		1BA2038F2C5F708D00C23FD8 /* day1_part2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2038E2C5F708D00C23FD8 /* day1_part2.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B0760D62C65256A00461EBA /* day4part2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day4part2.swift; sourceTree = "<group>"; };
 		1BA203812C5F705D00C23FD8 /* advent-of-code-2023 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "advent-of-code-2023"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA203842C5F705D00C23FD8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		1BA2038C2C5F708600C23FD8 /* day1_part1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = day1_part1.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				1BA2039E2C62BA3E00C23FD8 /* day4part1.swift */,
+				1B0760D62C65256A00461EBA /* day4part2.swift */,
 				1BA203A02C62BA4B00C23FD8 /* input.txt */,
 			);
 			path = day4;
@@ -186,6 +189,7 @@
 				1BA2038F2C5F708D00C23FD8 /* day1_part2.swift in Sources */,
 				1BA203852C5F705D00C23FD8 /* main.swift in Sources */,
 				1BA2039F2C62BA3E00C23FD8 /* day4part1.swift in Sources */,
+				1B0760D72C65256A00461EBA /* day4part2.swift in Sources */,
 				1BA203932C5F75F800C23FD8 /* day2_part1.swift in Sources */,
 				1BA2038D2C5F708600C23FD8 /* day1_part1.swift in Sources */,
 				1BA203992C6156AC00C23FD8 /* day3_part1.swift in Sources */,
